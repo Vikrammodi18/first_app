@@ -1,4 +1,5 @@
 import 'package:first_application/provider/password_toggle.dart';
+import 'package:first_application/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,12 +51,19 @@ class LoginScreen extends ConsumerWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: 50),
                       ElevatedButton(
-                        style: TextButton.styleFrom(minimumSize: Size(200, 50)),
+                        style: TextButton.styleFrom(minimumSize: Size(110, 55)),
                         onPressed: () {
-                          print("vikram");
+                          Navigator.pushNamed(context, MyRoutes.homeRoute);
                         },
-                        child: Text("Login"),
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
                       ),
                     ],
                   ),

@@ -1,5 +1,6 @@
 import 'package:first_application/screens/home_screen.dart';
 import 'package:first_application/screens/login_screen.dart';
+import 'package:first_application/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,16 +15,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       initialRoute: '/login',
       routes: {
-        '/home': (context) => HomeScreen(),
-        '/login': (context) => LoginScreen(),
+        MyRoutes.homeRoute: (context) => HomeScreen(),
+        MyRoutes.loginRoute: (context) => LoginScreen(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      
     );
   }
 }
