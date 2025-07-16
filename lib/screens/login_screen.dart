@@ -13,11 +13,13 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginStateState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   moveToHome(BuildContext context) async {
-    ref.read(animationProvider.notifier).state = true;
+    if (_formKey.currentState!.validate()) {
+      ref.read(animationProvider.notifier).state = true;
 
-    await Future.delayed(Duration(seconds: 1));
-    Navigator.pushNamed(context, MyRoutes.homeRoute);
-    ref.read(animationProvider.notifier).state = false;
+      await Future.delayed(Duration(seconds: 1));
+      Navigator.pushNamed(context, MyRoutes.homeRoute);
+      ref.read(animationProvider.notifier).state = false;
+    }
   }
 
   @override
@@ -63,7 +65,6 @@ class _LoginStateState extends ConsumerState<LoginScreen> {
                         SizedBox(height: 10),
 
                         TextFormField(
-                         
                           obscureText: toggleIcon,
                           decoration: InputDecoration(
                             hintText: "Enter Password",
