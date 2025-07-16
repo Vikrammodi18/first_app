@@ -9,6 +9,8 @@ class LoginScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toggleIcon = ref.watch(toggleProvider);
+    String name = ref.watch(nameProvider);
+    final changeContainer = ref.watch(animationProvider);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -24,12 +26,16 @@ class LoginScreen extends ConsumerWidget {
                   ),
                   child: Column(
                     children: [
+                      Text('Welcome $name', style: TextStyle(fontSize: 30)),
                       TextFormField(
                         decoration: InputDecoration(
                           hintText: "Enter Email",
                           labelText: "Email",
                           prefixIcon: Icon(Icons.email_sharp),
                         ),
+                        onChanged: (value) {
+                          ref.read(nameProvider.notifier).state = value;
+                        },
                       ),
                       SizedBox(height: 10),
                       TextFormField(
@@ -52,17 +58,33 @@ class LoginScreen extends ConsumerWidget {
                         ),
                       ),
                       SizedBox(height: 50),
-                      ElevatedButton(
-                        style: TextButton.styleFrom(minimumSize: Size(110, 55)),
-                        onPressed: () {
+                      InkWell(
+                        onTap: () async {
+                          ref.watch(animationProvider.notifier).state =
+                              !changeContainer;
+                          await Future.delayed(Duration(seconds: 1));
                           Navigator.pushNamed(context, MyRoutes.homeRoute);
                         },
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                        child: AnimatedContainer(
+                          duration: Duration(seconds: 2),
+                          height: 50,
+                          width: changeContainer ? 50 : 140,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple,
+                            borderRadius: BorderRadius.circular(10),
                           ),
+                          child: changeContainer
+                              ? Icon(Icons.done, color: Colors.white)
+                              : Text(
+                                  'Login',
+
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
                         ),
                       ),
                     ],
