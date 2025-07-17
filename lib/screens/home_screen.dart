@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
     double days = 30;
     String name = "vikram";
     return Scaffold(
-      appBar: AppBar(title: Text("home"), backgroundColor: Colors.red),
+      appBar: AppBar(title: Text("Catelog App")),
       body: Center(child: Text('this flutter\n $name')),
       drawer: MyDrawer(),
     );
