@@ -1,3 +1,4 @@
+import 'package:first_application/widget/my_drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,8 +10,8 @@ class HomeScreen extends StatelessWidget {
     String name = "vikram";
     return Scaffold(
       appBar: AppBar(title: Text("home"), backgroundColor: Colors.red),
-      body: Center(child: Text('this is $days days of flutter\n $name')),
-      drawer: Drawer(),
+      body: Center(child: Text('this flutter\n $name')),
+      drawer: MyDrawer(),
     );
   }
 }
