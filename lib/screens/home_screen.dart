@@ -1,3 +1,5 @@
+import 'package:first_application/model/catalog.dart';
+import 'package:first_application/widget/item_widget.dart';
 import 'package:first_application/widget/my_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -6,11 +8,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double days = 30;
-    String name = "vikram";
+    final dummyList = List.generate(20, (index) => CatalogModel.items[0]);
     return Scaffold(
       appBar: AppBar(title: Text("Catelog App")),
-      body: Center(child: Text('this flutter\n $name')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: dummyList.length,
+          itemBuilder: (context, index) {
+            return ItemWidget(item: dummyList[index]);
+          },
+        ),
+      ),
       drawer: MyDrawer(),
     );
   }
